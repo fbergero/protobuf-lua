@@ -1,19 +1,19 @@
 package = "protobuf"
 version = "1.1.4-1"
 source = {
-  url = "git://github.com/mrgonza78/protobuf-lua.git",
+  url = "git://github.com/fbergero/protobuf-lua.git",
   tag = "1.1.4",
 }
 description = {
   summary = "Protobuf library and compiler plugin",
-  homepage = "https://github.com/mrgonza78/protobuf-lua",
+  homepage = "https://github.com/fbergero/protobuf-lua",
   license = "MIT"
 }
 dependencies = {
   "lua >= 5.1, < 5.3"
 }
 build = {
-  type = "builtin",
+  type = "extended",
   modules = {
     protobuf = "protobuf/init.lua",
     ["protobuf.containers"] = "protobuf/containers.lua",
@@ -27,5 +27,8 @@ build = {
     ["protobuf.helper"] = "protobuf/helper.lua",
     ["protobuf.pb"] = { sources = { "protobuf/pb.c" } }
   },
-  copy_directories = {"protoc-plugin"}
+  copy_directories = {"protoc-plugin"},
+  variables = {
+    CFLAG_EXTRAS={"-g"}
+  }
 }
